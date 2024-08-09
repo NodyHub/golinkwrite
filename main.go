@@ -20,7 +20,7 @@ func main() {
 	// ctx := kong.Parse(&cli,
 	kong.Parse(&cli,
 		kong.Name("golinkwrite"),
-		kong.Description("Create a tar archive containing a symbolic link to a provided target and a provided file."),
+		kong.Description("Create a tar archive containing a provided file and a symlink that points to the write destination."),
 		kong.UsageOnError(),
 		kong.Vars{"version": "0.1.0"},
 	)
