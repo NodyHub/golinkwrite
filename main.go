@@ -13,7 +13,6 @@ type CLI struct {
 	Target  string `arg:"" name:"target" help:"Target destination in the filesystem."`
 	Output  string `arg:"" name:"output" help:"Output file."`
 	Verbose bool   `short:"v" name:"verbose" help:"Enable verbose output."`
-	Version kong.VersionFlag
 }
 
 func main() {
@@ -46,6 +45,7 @@ func main() {
 		logger.Error("failed to get file info", "error", err)
 		os.Exit(1)
 	}
+	logger.Debug("input permissions", "perm", fileInfo.Mode().Perm())
 
 	// read the input file
 	content, err := os.ReadFile(cli.Input)
@@ -53,6 +53,7 @@ func main() {
 		logger.Error("failed to read input file", "error", err)
 		os.Exit(1)
 	}
+	logger.Debug("input size", "size", len(content))
 
 	// prepare the tar file
 	out, err := os.Create(cli.Output)
@@ -68,7 +69,7 @@ func main() {
 	// add a symlink to the tar file
 	header := &tar.Header{
 		Name:     cli.Input,
-		Linkname: cli.Output,
+		Linkname: cli.Target,
 		Mode:     int64(fileInfo.Mode().Perm()),
 		Typeflag: tar.TypeSymlink,
 		Size:     0,
@@ -95,4 +96,5 @@ func main() {
 		logger.Error("failed to write to tar file", "error", err)
 		os.Exit(1)
 	}
+	logger.Info("tar file created", "output", cli.Output)
 }
