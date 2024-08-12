@@ -1,6 +1,9 @@
 # golinkwrite
 Create a tar archive containing a provided file and a symlink that points to the write destination.
 
+The blog post, which describes the background to the rool can be found here: [Link-Write Attack: A sweet combination
+](https://blog.nody.cc/posts/link-write-attack/).
+
 ## Install
 
 ### Build from source
