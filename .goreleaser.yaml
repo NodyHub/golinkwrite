@@ -1,4 +1,0 @@
-# .goreleaser.yaml
-builds:
-  -
-    binary: golinkwrite
