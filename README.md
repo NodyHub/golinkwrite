@@ -12,7 +12,7 @@ make install
 ### Fetch latest from GitHub
 
 ```shell
-GOPRIVATE=github.com/NodyHub/golinkwrite go install github.com/NodyHub/golinkwrite@latest
+$ go install github.com/NodyHub/golinkwrite@latest
 ```
 
 
